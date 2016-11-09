@@ -45,7 +45,8 @@ public class Main {
                     for (int j = 0; j < height; j += pixelSize) {
                         opencv_core.CvScalar scalar = opencv_core.cvGet2D(img, j, i);
                         if(i == 0 && j == 0){
-                            firstPixel = String.format(Locale.getDefault(), "#%02X%02X%02X", (int) scalar.val(2), (int) scalar.val(1), (int) scalar.val(0));
+                            firstPixel = String.format(Locale.getDefault(), "#%02X%02X%02X",
+                                    (int) scalar.val(2), (int) scalar.val(1), (int) scalar.val(0));
                         }
                         String pixel = String.format("%dpx %dpx #%02X%02X%02X",
                                 i, j, (int) scalar.val(2), (int) scalar.val(1), (int) scalar.val(0));
