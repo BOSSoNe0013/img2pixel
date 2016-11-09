@@ -1,4 +1,5 @@
 import org.bytedeco.javacpp.opencv_core;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +55,9 @@ public class Main {
                     }
                 }
                 img.release();
-                @SuppressWarnings("Since15") String css = String.format(Locale.getDefault(),
+                String css = String.format(Locale.getDefault(),
                         "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
-                        width, height, pixelSize, pixelSize, firstPixel, String.join(",\n\t", pixels));
+                        width, height, pixelSize, pixelSize, firstPixel, StringUtils.join(pixels, ",\n\t"));
                 System.out.println(css);
             }
             else{
