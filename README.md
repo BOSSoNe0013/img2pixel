@@ -4,7 +4,6 @@ One method used to draw with CSS is to use :after pseudo-element and box-shadow 
  [Example 1](https://www.b1project.com/avatar_pixel.html) [Example 2](https://www.b1project.com/landscape_pixel.html)
  
 ## Dependencies
-JavaCV 1.2
 
 ## Build
 Use maven for build:
