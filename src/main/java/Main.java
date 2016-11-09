@@ -34,7 +34,10 @@ public class Main {
                 int height = img.height();
                 int pixelSize = 4;
                 if (args.length > 1) {
-                    pixelSize = Integer.parseInt(args[1]);
+                    int ps = Integer.parseInt(args[1]);
+                    if(ps > 0) {
+                        pixelSize = ps;
+                    }
                 }
                 List<String> pixels = new ArrayList<String>();
                 String firstPixel = "#000000";
