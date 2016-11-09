@@ -78,6 +78,6 @@ public class Main {
         int red = (pixel >> 16) & 0xff;
         int green = (pixel >> 8) & 0xff;
         int blue = (pixel) & 0xff;
-        return String.format("rgba(%d, %d ,%d, %d)", red, green, blue, alpha);
+        return String.format("rgba(%d, %d ,%d, %d)", red, green, blue, alpha/255);
     }
 }
