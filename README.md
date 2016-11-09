@@ -58,6 +58,9 @@ Output:
 
 ## License
 
+
+Copyright 2016 Cyril Bosselut
+
 GNU Lesser General Public License (LGPL) Version 2.1.
 
 See [LICENSE](LICENSE).
