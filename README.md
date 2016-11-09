@@ -1,8 +1,12 @@
-#img2pixel
-##img to what ?
+# img2pixel
+## img to what ?
 One method used to draw with CSS is to use :after pseudo-element and box-shadow argument to create pixels. It's a powerful solution but somehow complex to do by hand. This command line java tool use opencv to create the complete css for you based on an image and optionally on a pixel size (4px by default).
  [Example 1](https://www.b1project.com/avatar_pixel.html) [Example 2](https://www.b1project.com/landscape_pixel.html)
-##Usage
+ 
+## Dependencies
+JavaCV 1.2
+
+## Usage
 ```bash
 java -jar img2pixel.jar avatar_80x80.png 16
 ```
@@ -47,3 +51,10 @@ Output:
 }
 </style><div id="pixel"></div>
 ```
+
+## License
+
+GNU Lesser General Public License (LGPL) Version 2.1.
+
+See [LICENSE](LICENSE).
+
