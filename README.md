@@ -6,6 +6,11 @@ One method used to draw with CSS is to use :after pseudo-element and box-shadow 
 ## Dependencies
 JavaCV 1.2
 
+## Build
+Use maven for build:
+
+    mvn package -DskipTests
+
 ## Usage
 ```bash
 java -jar img2pixel.jar avatar_80x80.png 16
