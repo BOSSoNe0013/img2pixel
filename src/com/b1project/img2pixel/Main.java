@@ -40,15 +40,15 @@ public class Main {
                 int pixelSize = parser.getRatio();
                 float factor = parser.getFactor();
                 List<String> pixels = new ArrayList<>();
-                String firstPixel = "#000000";
+                String firstPixel = "rgba(0,0,0,0)";
                 for (int i = 0; i < width; i += pixelSize) {
                     for (int j = 0; j < height; j += pixelSize) {
                         int p = img.getRGB(i, j);
                         if (i == 0 && j == 0) {
-                            firstPixel = getARGBString(p);
+                            firstPixel = getRGBAString(p);
                         }
                         String pixel = String.format("%dpx %dpx %s",
-                                (int)(i*factor), (int)(j*factor), getARGBString(p));
+                                (int)(i*factor), (int)(j*factor), getRGBAString(p));
                         pixels.add(pixel);
                     }
                 }
@@ -63,7 +63,7 @@ public class Main {
         }
     }
 
-    private static String getARGBString(int pixel){
+    private static String getRGBAString(int pixel){
         int alpha = (pixel >> 24) & 0xff;
         int red = (pixel >> 16) & 0xff;
         int green = (pixel >> 8) & 0xff;

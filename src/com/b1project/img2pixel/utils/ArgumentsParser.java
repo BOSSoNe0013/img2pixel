@@ -31,7 +31,6 @@ import java.io.IOException;
 public class ArgumentsParser {
 
     private BufferedImage mBufferedImage;
-    private String mFilePath;
     private CmdLineParser mParser;
     private int mRatio = 4;
     private float mFactor = 1;
@@ -58,7 +57,6 @@ public class ArgumentsParser {
     @Option(name = "-f", aliases = {"--file"}, required = true, usage ="image access path")
     public void setFile(File file){
         try {
-            mFilePath = file.getPath();
             FileInputStream is = new FileInputStream(file);
             if (is.available() > 0){
                 mBufferedImage = ImageIO.read(is);
@@ -111,10 +109,6 @@ public class ArgumentsParser {
 
     public BufferedImage getBufferedImage(){
         return mBufferedImage;
-    }
-
-    public String getFilePath(){
-        return mFilePath;
     }
 
     public boolean isHelpNeeded(){
