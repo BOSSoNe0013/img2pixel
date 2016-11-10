@@ -30,43 +30,36 @@ import java.util.Locale;
 public class Main {
 
     public static void main(String[] args){
-        if(args.length > 0 && args[0] != null){
-            try {
-                ArgumentsParser parser = new ArgumentsParser();
-                parser.parse(args);
-                BufferedImage img = parser.getBufferedImage();
-                if (img != null) {
-                    int width = img.getWidth();
-                    int height = img.getHeight();
-                    int pixelSize = parser.getRatio();
-                    float factor = parser.getFactor();
-                    List<String> pixels = new ArrayList<>();
-                    String firstPixel = "#000000";
-                    for (int i = 0; i < width; i += pixelSize) {
-                        for (int j = 0; j < height; j += pixelSize) {
-                            int p = img.getRGB(i, j);
-                            if (i == 0 && j == 0) {
-                                firstPixel = getARGBString(p);
-                            }
-                            String pixel = String.format("%dpx %dpx %s",
-                                    (int)(i*factor), (int)(j*factor), getARGBString(p));
-                            pixels.add(pixel);
+        try {
+            ArgumentsParser parser = new ArgumentsParser();
+            parser.parse(args);
+            BufferedImage img = parser.getBufferedImage();
+            if (img != null) {
+                int width = img.getWidth();
+                int height = img.getHeight();
+                int pixelSize = parser.getRatio();
+                float factor = parser.getFactor();
+                List<String> pixels = new ArrayList<>();
+                String firstPixel = "#000000";
+                for (int i = 0; i < width; i += pixelSize) {
+                    for (int j = 0; j < height; j += pixelSize) {
+                        int p = img.getRGB(i, j);
+                        if (i == 0 && j == 0) {
+                            firstPixel = getARGBString(p);
                         }
+                        String pixel = String.format("%dpx %dpx %s",
+                                (int)(i*factor), (int)(j*factor), getARGBString(p));
+                        pixels.add(pixel);
                     }
-                    String css = String.format(Locale.getDefault(),
-                            "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
-                            (int)(width*factor), (int)(height*factor), (int)(pixelSize*factor), (int)(pixelSize*factor), firstPixel, StringUtils.join(pixels, ",\n\t"));
-                    System.out.println(css);
-                } else {
-                    System.err.println("Can't open file " + parser.getFilePath());
                 }
-            }
-            catch (Exception e){
-                System.err.println(e.toString());
+                String css = String.format(Locale.getDefault(),
+                        "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
+                        (int)(width*factor), (int)(height*factor), (int)(pixelSize*factor), (int)(pixelSize*factor), firstPixel, StringUtils.join(pixels, ",\n\t"));
+                System.out.println(css);
             }
         }
-        else{
-            System.err.println("img2pixel needs at least one argument which is the source image path");
+        catch (Exception e){
+            System.err.println(e.toString());
         }
     }
 
