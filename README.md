@@ -26,32 +26,32 @@ Output:
 	display:block;
 	width:16px;
 	height:16px;
-	background:#000000;
-	box-shadow:0px 0px #000000,
-	0px 16px #000000,
-	0px 32px #000000,
-	0px 48px #000000,
-	0px 64px #000000,
-	16px 0px #000000,
-	16px 16px #000000,
-	16px 32px #010101,
-	16px 48px #030303,
-	16px 64px #000000,
-	32px 0px #000000,
-	32px 16px #000000,
-	32px 32px #DBDBDB,
-	32px 48px #848484,
-	32px 64px #010101,
-	48px 0px #A8A8A8,
-	48px 16px #979797,
-	48px 32px #E9E9E9,
-	48px 48px #313131,
-	48px 64px #1D1D1D,
-	64px 0px #000000,
-	64px 16px #000000,
-	64px 32px #C3C3C3,
-	64px 48px #575757,
-	64px 64px #0C0C0C;
+	background:rgba(0, 0 ,0, 1.00);
+	box-shadow:0px 0px rgba(0, 0 ,0, 1.00),
+	0px 16px rgba(0, 0 ,0, 1.00),
+	0px 32px rgba(0, 0 ,0, 1.00),
+	0px 48px rgba(0, 0 ,0, 1.00),
+	0px 64px rgba(0, 0 ,0, 1.00),
+	16px 0px rgba(0, 0 ,0, 1.00),
+	16px 16px rgba(0, 0 ,0, 1.00),
+	16px 32px rgba(1, 1 ,1, 1.00),
+	16px 48px rgba(3, 3 ,3, 1.00),
+	16px 64px rgba(0, 0 ,0, 1.00),
+	32px 0px rgba(0, 0 ,0, 1.00),
+	32px 16px rgba(0, 0 ,0, 1.00),
+	32px 32px rgba(219, 219 ,219, 1.00),
+	32px 48px rgba(132, 132 ,132, 1.00),
+	32px 64px rgba(1, 1 ,1, 1.00),
+	48px 0px rgba(168, 168 ,168, 1.00),
+	48px 16px rgba(151, 151 ,151, 1.00),
+	48px 32px rgba(233, 233 ,233, 1.00),
+	48px 48px rgba(49, 49 ,49, 1.00),
+	48px 64px rgba(29, 29 ,29, 1.00),
+	64px 0px rgba(0, 0 ,0, 1.00),
+	64px 16px rgba(0, 0 ,0, 1.00),
+	64px 32px rgba(195, 195 ,195, 1.00),
+	64px 48px rgba(87, 87 ,87, 1.00),
+	64px 64px rgba(12, 12 ,12, 1.00);
 }
 </style><div id="pixel"></div>
 ```
