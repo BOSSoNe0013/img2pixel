@@ -32,6 +32,7 @@ public class ArgumentsParser {
 
     private BufferedImage mBufferedImage;
     private CmdLineParser mParser;
+    private File mOutputFile = null;
     private int mRatio = 4;
     private float mFactor = 1;
     private boolean mHelpNeeded = false;
@@ -66,6 +67,11 @@ public class ArgumentsParser {
             System.err.println(e.getMessage());
             mParser.printUsage(System.err);
         }
+    }
+
+    @Option(name = "-o", aliases = {"--output"}, usage ="output target path, default output to stdout")
+    public void setOutput(File file){
+        mOutputFile = file;
     }
 
     @Option(name = "-h", aliases = {"--help"}, usage = "this help", help = true)
@@ -113,5 +119,9 @@ public class ArgumentsParser {
 
     public boolean isHelpNeeded(){
         return mHelpNeeded;
+    }
+
+    public File getOutputFile(){
+        return mOutputFile;
     }
 }

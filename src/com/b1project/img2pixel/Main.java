@@ -4,6 +4,8 @@ import com.b1project.img2pixel.utils.ArgumentsParser;
 import org.apache.commons.lang.StringUtils;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -41,8 +43,8 @@ public class Main {
                 float factor = parser.getFactor();
                 List<String> pixels = new ArrayList<>();
                 String firstPixel = "rgba(0,0,0,0)";
-                for (int i = 0; i < width; i += pixelSize) {
-                    for (int j = 0; j < height; j += pixelSize) {
+                for (int j = 0; j < height; j += pixelSize) {
+                    for (int i = 0; i < width; i += pixelSize) {
                         int p = img.getRGB(i, j);
                         if (i == 0 && j == 0) {
                             firstPixel = getRGBAString(p);
@@ -55,7 +57,16 @@ public class Main {
                 String css = String.format(Locale.getDefault(),
                         "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
                         (int)(width*factor), (int)(height*factor), (int)(pixelSize*factor), (int)(pixelSize*factor), firstPixel, StringUtils.join(pixels, ",\n\t"));
-                System.out.println(css);
+                File out = parser.getOutputFile();
+                if (out != null){
+                    FileOutputStream os = new FileOutputStream(out);
+                    os.write(css.getBytes());
+                    os.close();
+                    System.out.println("All done.");
+                }
+                else {
+                    System.out.println(css);
+                }
             }
         }
         catch (Exception e){
