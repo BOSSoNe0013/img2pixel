@@ -34,7 +34,7 @@ public class ArgumentsParser {
     private String mFilePath;
     private CmdLineParser mParser;
     private int mRatio = 4;
-    private int mFactor = 1;
+    private float mFactor = 1;
 
     public ArgumentsParser(){
         mParser = new CmdLineParser(this);
@@ -48,7 +48,7 @@ public class ArgumentsParser {
     }
 
     @Option(name = "-m", aliases = {"--multiply"}, usage = "increase the output pixel size, default 1")
-    public void setFactor(int factor){
+    public void setFactor(float factor){
         if (factor > 0){
             mFactor = factor;
         }
@@ -74,11 +74,11 @@ public class ArgumentsParser {
         try {
             mParser.parseArgument(args);
             if (getRatio() < 1){
-                System.err.println("Ratio should be > 0");
+                System.err.println("Ratio should be >= 1");
                 mParser.printUsage(System.err);
                 return false;
             }
-            if (getFactor() < 1){
+            if (getFactor() <= 0){
                 System.err.println("Factor should be > 0");
                 mParser.printUsage(System.err);
                 return false;
@@ -98,7 +98,7 @@ public class ArgumentsParser {
         return mRatio;
     }
 
-    public int getFactor(){
+    public float getFactor(){
         return mFactor;
     }
 

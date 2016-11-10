@@ -37,7 +37,7 @@ public class Main {
                     int width = img.getWidth();
                     int height = img.getHeight();
                     int pixelSize = parser.getRatio();
-                    int factor = parser.getFactor();
+                    float factor = parser.getFactor();
                     List<String> pixels = new ArrayList<String>();
                     String firstPixel = "#000000";
                     for (int i = 0; i < width; i += pixelSize) {
@@ -47,13 +47,13 @@ public class Main {
                                 firstPixel = getARGBString(p);
                             }
                             String pixel = String.format("%dpx %dpx %s",
-                                    i*factor, j*factor, getARGBString(p));
+                                    (int)(i*factor), (int)(j*factor), getARGBString(p));
                             pixels.add(pixel);
                         }
                     }
                     String css = String.format(Locale.getDefault(),
                             "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
-                            width*factor, height*factor, pixelSize*factor, pixelSize*factor, firstPixel, StringUtils.join(pixels, ",\n\t"));
+                            (int)(width*factor), (int)(height*factor), (int)(pixelSize*factor), (int)(pixelSize*factor), firstPixel, StringUtils.join(pixels, ",\n\t"));
                     System.out.println(css);
                 } else {
                     System.err.println("Can't open file " + parser.getFilePath());
