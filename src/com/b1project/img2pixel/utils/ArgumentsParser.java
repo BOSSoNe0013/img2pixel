@@ -35,6 +35,7 @@ public class ArgumentsParser {
     private CmdLineParser mParser;
     private int mRatio = 4;
     private float mFactor = 1;
+    private boolean mHelpNeeded = false;
 
     public ArgumentsParser(){
         mParser = new CmdLineParser(this);
@@ -67,6 +68,12 @@ public class ArgumentsParser {
             System.err.println(e.getMessage());
             mParser.printUsage(System.err);
         }
+    }
+
+    @Option(name = "-h", aliases = {"--help"}, usage = "this help", help = true)
+    public void showHelp(String help){
+        mParser.printUsage(System.err);
+        mHelpNeeded = true;
     }
 
     public boolean parse(String... args){
@@ -108,5 +115,9 @@ public class ArgumentsParser {
 
     public String getFilePath(){
         return mFilePath;
+    }
+
+    public boolean isHelpNeeded(){
+        return mHelpNeeded;
     }
 }

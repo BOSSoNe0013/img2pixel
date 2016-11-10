@@ -34,7 +34,7 @@ public class Main {
             ArgumentsParser parser = new ArgumentsParser();
             parser.parse(args);
             BufferedImage img = parser.getBufferedImage();
-            if (img != null) {
+            if (img != null && !parser.isHelpNeeded()) {
                 int width = img.getWidth();
                 int height = img.getHeight();
                 int pixelSize = parser.getRatio();
