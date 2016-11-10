@@ -1,4 +1,4 @@
-package utils;
+package com.b1project.img2pixel.utils;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -54,7 +54,7 @@ public class ArgumentsParser {
         }
     }
 
-    @Option(name = "", aliases = {"-f", "--file"}, required = true, usage ="image access path")
+    @Option(name = "-f", aliases = {"--file"}, required = true, usage ="image access path")
     public void setFile(File file){
         try {
             mFilePath = file.getPath();

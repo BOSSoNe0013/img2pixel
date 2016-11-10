@@ -1,5 +1,7 @@
+package com.b1project.img2pixel;
+
+import com.b1project.img2pixel.utils.ArgumentsParser;
 import org.apache.commons.lang.StringUtils;
-import utils.ArgumentsParser;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Main {
                     int height = img.getHeight();
                     int pixelSize = parser.getRatio();
                     float factor = parser.getFactor();
-                    List<String> pixels = new ArrayList<String>();
+                    List<String> pixels = new ArrayList<>();
                     String firstPixel = "#000000";
                     for (int i = 0; i < width; i += pixelSize) {
                         for (int j = 0; j < height; j += pixelSize) {
