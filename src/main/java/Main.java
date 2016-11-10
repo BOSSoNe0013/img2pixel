@@ -1,9 +1,7 @@
 import org.apache.commons.lang.StringUtils;
+import utils.ArgumentsParser;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -28,21 +26,18 @@ import java.util.Locale;
  */
 
 public class Main {
+
     public static void main(String[] args){
         if(args.length > 0 && args[0] != null){
             try {
-                InputStream is = new FileInputStream(args[0]);
-                BufferedImage img = ImageIO.read(is);
+                ArgumentsParser parser = new ArgumentsParser();
+                parser.parse(args);
+                BufferedImage img = parser.getBufferedImage();
                 if (img != null) {
                     int width = img.getWidth();
                     int height = img.getHeight();
-                    int pixelSize = 4;
-                    if (args.length > 1) {
-                        int ps = Integer.parseInt(args[1]);
-                        if (ps > 0) {
-                            pixelSize = ps;
-                        }
-                    }
+                    int pixelSize = parser.getRatio();
+                    int factor = parser.getFactor();
                     List<String> pixels = new ArrayList<String>();
                     String firstPixel = "#000000";
                     for (int i = 0; i < width; i += pixelSize) {
@@ -52,16 +47,16 @@ public class Main {
                                 firstPixel = getARGBString(p);
                             }
                             String pixel = String.format("%dpx %dpx %s",
-                                    i, j, getARGBString(p));
+                                    i*factor, j*factor, getARGBString(p));
                             pixels.add(pixel);
                         }
                     }
                     String css = String.format(Locale.getDefault(),
                             "<style>\n#pixel{\n\twidth:%dpx;\n\theight:%dpx;\n\t}\n#pixel:after{\n\tcontent:'';\n\tdisplay:block;\n\twidth:%dpx;\n\theight:%dpx;\n\tbackground:%s;\n\tbox-shadow:%s;\n}\n</style><div id=\"pixel\"></div>",
-                            width, height, pixelSize, pixelSize, firstPixel, StringUtils.join(pixels, ",\n\t"));
+                            width*factor, height*factor, pixelSize*factor, pixelSize*factor, firstPixel, StringUtils.join(pixels, ",\n\t"));
                     System.out.println(css);
                 } else {
-                    System.err.println("Can't open file " + args[0]);
+                    System.err.println("Can't open file " + parser.getFilePath());
                 }
             }
             catch (Exception e){

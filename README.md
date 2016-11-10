@@ -12,7 +12,7 @@ Use maven for build:
 
 ## Usage
 ```bash
-java -jar img2pixel.jar avatar_80x80.png 16
+java -jar img2pixel.jar -f avatar_80x80.png -p 16
 ```
 Output:
 ```html
